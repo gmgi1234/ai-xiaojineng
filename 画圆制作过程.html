@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用AI控制FreeCAD自动画图：从零到画出一个圆的完整实战</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px 24px;
+  }
+  /* 封面 */
+  .cover {
+    text-align: center;
+    padding: 50px 20px 40px;
+    background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+    color: #fff;
+    border-radius: 12px;
+    margin-bottom: 36px;
+  }
+  .cover h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle {
+    font-size: 15px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+  }
+  .cover .tags {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cover .tag {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  /* 章节标题 */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 40px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #2e86c1;
+  }
+  .section-title .num {
+    background: #2e86c1;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-title h2 {
+    font-size: 20px;
+    color: #1a5276;
+  }
+  /* 对话气泡 */
+  .chat-block {
+    margin: 20px 0;
+  }
+  .bubble {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .bubble.user {
+    background: #e8f4fd;
+    border-left: 4px solid #2e86c1;
+    margin-left: 40px;
+  }
+  .bubble.ai {
+    background: #f9f9f9;
+    border-left: 4px solid #27ae60;
+    margin-right: 40px;
+  }
+  .bubble .role {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .bubble.user .role { color: #2e86c1; }
+  .bubble.ai .role { color: #27ae60; }
+  .bubble .role-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+  }
+  .bubble.user .role-icon { background: #2e86c1; }
+  .bubble.ai .role-icon { background: #27ae60; }
+  .bubble p { margin-bottom: 10px; }
+  .bubble p:last-child { margin-bottom: 0; }
+  .bubble ul, .bubble ol { padding-left: 20px; margin-bottom: 10px; }
+  .bubble li { margin-bottom: 6px; }
+  .bubble strong { color: #1a5276; }
+  .bubble code {
+    background: #eef1f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 14px;
+    color: #c0392b;
+  }
+  /* 配图 */
+  .figure {
+    margin: 24px 0;
+    text-align: center;
+  }
+  .figure img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .figure .caption {
+    font-size: 13px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  /* 代码块 */
+  .code-block {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 16px 0;
+    overflow-x: auto;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .code-block .filename {
+    color: #89b4fa;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #45475a;
+  }
+  .code-block .comment { color: #6c7086; }
+  .code-block .keyword { color: #cba6f7; }
+  .code-block .string { color: #a6e3a1; }
+  .code-block .number { color: #fab387; }
+  .code-block .func { color: #89b4fa; }
+  /* 成果展示卡片 */
+  .result-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .result-card h3 {
+    color: #0369a1;
+    font-size: 17px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .result-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 4px solid #2e86c1;
+  }
+  .result-item .name {
+    font-weight: 600;
+    color: #1a5276;
+  }
+  .result-item .info {
+    font-size: 13px;
+    color: #666;
+  }
+  /* 圆形展示 */
+  .circle-display {
+    text-align: center;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    margin: 16px 0;
+    border: 2px dashed #cbd5e1;
+  }
+  .circle-display svg {
+    max-width: 300px;
+    height: auto;
+  }
+  .circle-display .label {
+    margin-top: 12px;
+    color: #64748b;
+    font-size: 14px;
+  }
+  /* 终端输出 */
+  .terminal {
+    background: #0c0c0c;
+    color: #0f0;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin: 16px 0;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  .terminal .prompt { color: #0f0; }
+  .terminal .info { color: #89b4fa; }
+  .terminal .success { color: #a6e3a1; }
+  .terminal .warn { color: #f9e2af; }
+  /* 表格 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    color: #1a5276;
+    font-weight: 600;
+  }
+  td .status-fail { color: #e74c3c; }
+  td .status-ok { color: #27ae60; }
+  /* 提示框 */
+  .tip-box {
+    background: #fef9e7;
+    border-left: 4px solid #f1c40f;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+  .tip-box strong { color: #9a7d0a; }
+  /* 总结 */
+  .summary {
+    background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+    color: #fff;
+    padding: 32px 24px;
+    border-radius: 12px;
+    margin: 36px 0 20px;
+  }
+  .summary h2 {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .summary ul {
+    padding-left: 20px;
+  }
+  .summary li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #999;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+    margin-top: 30px;
+  }
+  /* 响应式 */
+  @media (max-width: 600px) {
+    .container { padding: 20px 16px; }
+    .cover h1 { font-size: 22px; }
+    .bubble.user { margin-left: 0; }
+    .bubble.ai { margin-right: 0; }
+    .section-title h2 { font-size: 17px; }
+    .code-block { font-size: 12px; padding: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 封面 -->
+  <div class="cover">
+    <h1>用AI控制FreeCAD自动画图</h1>
+    <p class="subtitle">从零开始到画出一个圆的完整实战记录</p>
+    <div class="tags">
+      <span class="tag">FreeCAD</span>
+      <span class="tag">Python脚本</span>
+      <span class="tag">AI编程</span>
+      <span class="tag">CAD自动化</span>
+    </div>
+  </div>
+
+  <!-- 引言 -->
+  <div class="tip-box">
+    <strong>导读：</strong>这是一次真实的AI编程对话全过程。用户从未接触过FreeCAD，到最终用AI编写Python脚本成功控制FreeCAD画出一个圆，并导出三种格式文件。整个过程只用了三轮对话，本文完整还原每一步操作和成果。
+  </div>
+
+  <!-- 第一阶段 -->
+  <div class="section-title">
+    <span class="num">1</span>
+    <h2>发现工具：FreeCAD 能用代码控制吗？</h2>
+  </div>
+
+  <div class="chat-block">
+    <div class="bubble user">
+      <div class="role"><span class="role-icon">我</span>用户提问</div>
+      <p>你能查一下网上是不是有一个freeCAD的开源程序可以绘制CAD图的，你可以控制它帮我画图吗？</p>
+    </div>
+    <div class="bubble ai">
+      <div class="role"><span class="role-icon">AI</span>AI 回答</div>
+      <p>AI立刻进行了网络搜索，确认了 <strong>FreeCAD</strong> 是一款免费、开源的 3D/2D CAD 建模软件，基于 OpenCASCADE 几何核心。更重要的是，它完全支持 <strong>Python 脚本控制</strong>：</p>
+      <ul>
+        <li><strong>内置 Python API</strong>：几乎所有界面操作都能用 Python 代码完成</li>
+        <li><strong>命令行无头模式</strong>：可通过 <code>freecadcmd</code> 在无界面下执行脚本</li>
+        <li><strong>多格式导出</strong>：支持 <code>.FCStd</code> / <code>.DXF</code> / <code>.STEP</code> / <code>.SVG</code> 等</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="figure">
+    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=A%20professional%203D%20CAD%20modeling%20software%20interface%20showing%20engineering%20design%20with%20parametric%20models%2C%20modern%20blue%20UI%20theme%2C%20technical%20drawing%20workspace&image_size=landscape_16_9" alt="FreeCAD 3D建模软件界面">
+    <div class="caption">▲ 配图1：FreeCAD —— 开源参数化3D建模软件</div>
+  </div>
+
+  <!-- 第二阶段 -->
+  <div class="section-title">
+    <span class="num">2</span>
+    <h2>曲折下载：一路失败的尝试</h2>
+  </div>
+
+  <div class="chat-block">
+    <div class="bubble user">
+      <div class="role"><span class="role-icon">我</span>用户提问</div>
+      <p>你能帮我下载吗？</p>
+    </div>
+    <div class="bubble ai">
+      <div class="role"><span class="role-icon">AI</span>AI 回答</div>
+      <p>AI开始尝试自动下载 FreeCAD 安装包（491MB）。它依次尝试了多种方式，但全部失败：</p>
+      <table>
+        <tr><th>下载方式</th><th>结果</th></tr>
+        <tr><td>GitHub 官方直连</td><td><span class="status-fail">Connection reset（被阻断）</span></td></tr>
+        <tr><td>镜像代理 gh-proxy.com</td><td><span class="status-fail">连上但无数据传输</span></td></tr>
+        <tr><td>镜像 mirror.ghproxy.com</td><td><span class="status-fail">连接超时</span></td></tr>
+        <tr><td>镜像 github.moeyy.xyz</td><td><span class="status-fail">连接超时</span></td></tr>
+        <tr><td>镜像 gh.llkk.cc</td><td><span class="status-fail">连接超时</span></td></tr>
+        <tr><td>华军软件园</td><td><span class="status-fail">403 Forbidden（反爬）</span></td></tr>
+      </table>
+      <p>最终AI建议用户<strong>用浏览器手动下载</strong>安装，并提供下载地址。</p>
+    </div>
+  </div>
+
+  <div class="figure">
+    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20network%20data%20downloading%20concept%20with%20progress%20bars%2C%20connection%20lines%2C%20cloud%20technology%20and%20firewall%20barriers%2C%20blue%20tech%20theme&image_size=landscape_16_9" alt="网络下载过程示意图">
+    <div class="caption">▲ 配图2：自动下载尝试 —— 网络受阻，多次失败</div>
+  </div>
+
+  <!-- 第三阶段 -->
+  <div class="section-title">
+    <span class="num">3</span>
+    <h2>成功画圆：AI接管FreeCAD</h2>
+  </div>
+
+  <div class="chat-block">
+    <div class="bubble user">
+      <div class="role"><span class="role-icon">我</span>用户提问</div>
+      <p>我现在安装了freeCAD了，可以帮我画一个圆吗？</p>
+    </div>
+    <div class="bubble ai">
+      <div class="role"><span class="role-icon">AI</span>AI 回答</div>
+      <p>用户自行安装好 FreeCAD 后，AI立即开始执行三步操作：</p>
+      <ol>
+        <li><strong>定位</strong>：搜索找到 <code>FreeCADCmd.exe</code> 位于 <code>D:\Program Files\FreeCAD 0.21\bin\</code></li>
+        <li><strong>编写脚本</strong>：用 Python 调用 FreeCAD API 画圆</li>
+        <li><strong>执行</strong>：用命令行无头模式运行脚本，生成文件</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3 style="color:#1a5276; margin:24px 0 12px; font-size:17px;">Step 1：定位 FreeCAD 命令行工具</h3>
+  <p>AI 通过 PowerShell 在系统中搜索，找到了 FreeCAD 的命令行工具：</p>
+  <div class="terminal">
+    <div class="prompt">PS&gt; Get-ChildItem -Path "C:\","D:\" -Filter "FreeCADCmd.exe" -Recurse</div>
+    <div class="info">D:\Program Files\FreeCAD 0.21\bin\FreeCADCmd.exe</div>
+  </div>
+
+  <h3 style="color:#1a5276; margin:24px 0 12px; font-size:17px;">Step 2：编写 Python 画圆脚本</h3>
+  <p>AI编写了一个完整的 Python 脚本，创建圆心在原点、半径50mm的圆，并导出三种格式：</p>
+
+  <div class="code-block">
+    <div class="filename">draw_circle.py</div>
+<span class="comment"># -*- coding: utf-8 -*-</span>
+<span class="comment"># 使用 FreeCAD 的 Python API 绘制一个圆</span>
+<span class="comment"># 圆心 (0,0,0)，半径 50mm，导出为 DXF 和 FCStd 格式</span>
+
+<span class="keyword">import</span> FreeCAD
+<span class="keyword">import</span> Part
+<span class="keyword">import</span> Draft
+
+<span class="comment"># 创建新文档</span>
+doc = FreeCAD.<span class="func">newDocument</span>(<span class="string">"CircleDrawing"</span>)
+
+<span class="comment"># 圆心坐标</span>
+center = FreeCAD.<span class="func">Vector</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+<span class="comment"># 法线方向（Z轴向上，即圆在 XY 平面）</span>
+normal = FreeCAD.<span class="func">Vector</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>)
+<span class="comment"># 半径 50mm</span>
+radius = <span class="number">50.0</span>
+
+<span class="comment"># 创建圆</span>
+circle = Part.<span class="func">makeCircle</span>(radius, center, normal)
+<span class="comment"># 将圆加入文档</span>
+circle_obj = doc.<span class="func">addObject</span>(<span class="string">"Part::Feature"</span>, <span class="string">"MyCircle"</span>)
+circle_obj.Shape = Part.<span class="func">Wire</span>(circle)
+circle_obj.Label = <span class="string">"圆形"</span>
+
+<span class="comment"># 重新计算文档</span>
+doc.<span class="func">recompute</span>()
+
+<span class="comment"># 保存为 FreeCAD 原生格式</span>
+fcstd_path = <span class="string">r"d:\Downloads\CAD-chajian\circle.FCStd"</span>
+doc.<span class="func">saveAs</span>(fcstd_path)
+<span class="func">print</span>(<span class="string">"已保存 FCStd 文件: "</span> + fcstd_path)
+
+<span class="comment"># 导出为 DXF 格式（AutoCAD 可打开）</span>
+dxf_path = <span class="string">r"d:\Downloads\CAD-chajian\circle.dxf"</span>
+<span class="keyword">import</span> importDXF
+importDXF.<span class="func">export</span>([circle_obj], dxf_path)
+<span class="func">print</span>(<span class="string">"已保存 DXF 文件: "</span> + dxf_path)
+
+<span class="comment"># 导出为 SVG 格式（可直接预览）</span>
+svg_path = <span class="string">r"d:\Downloads\CAD-chajian\circle.svg"</span>
+<span class="keyword">import</span> importSVG
+importSVG.<span class="func">export</span>([circle_obj], svg_path)
+<span class="func">print</span>(<span class="string">"已保存 SVG 文件: "</span> + svg_path)
+  </div>
+
+  <h3 style="color:#1a5276; margin:24px 0 12px; font-size:17px;">Step 3：命令行执行，一键生成</h3>
+  <p>用 <code>FreeCADCmd.exe</code> 无界面模式执行脚本：</p>
+  <div class="terminal">
+    <div class="prompt">PS&gt; & "D:\Program Files\FreeCAD 0.21\bin\FreeCADCmd.exe" "draw_circle.py"</div>
+    <div class="success">已保存 FCStd 文件: d:\Downloads\CAD-chajian\circle.FCStd</div>
+    <div class="success">已保存 DXF 文件: d:\Downloads\CAD-chajian\circle.dxf</div>
+    <div class="success">已保存 SVG 文件: d:\Downloads\CAD-chajian\circle.svg</div>
+    <div class="success">画圆完成！半径=50.0mm，圆心=(0,0,0)</div>
+    <div class="warn">Recompute...... (100%)</div>
+  </div>
+
+  <!-- 成果展示 -->
+  <div class="result-card">
+    <h3>画圆成果展示</h3>
+    <div class="circle-display">
+      <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="260" height="260" fill="url(#grid)"/>
+        <line x1="0" y1="130" x2="260" y2="130" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="130" y1="0" x2="130" y2="260" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+        <circle cx="130" cy="130" r="100" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+        <circle cx="130" cy="130" r="3" fill="#2563eb"/>
+        <text x="138" y="125" font-size="12" fill="#64748b">(0,0)</text>
+        <text x="195" y="60" font-size="13" fill="#1a5276" font-weight="600">r=50mm</text>
+        <line x1="130" y1="130" x2="230" y2="130" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="3,3"/>
+      </svg>
+      <div class="label">▲ 画出的圆：圆心(0,0)，半径50mm</div>
+    </div>
+
+    <div class="result-list">
+      <div class="result-item">
+        <span class="name">circle.FCStd</span>
+        <span class="info">1.4 KB · FreeCAD原生格式</span>
+      </div>
+      <div class="result-item">
+        <span class="name">circle.dxf</span>
+        <span class="info">5.2 KB · AutoCAD通用格式</span>
+      </div>
+      <div class="result-item">
+        <span class="name">circle.svg</span>
+        <span class="info">546 B · 矢量图格式</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="figure">
+    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=A%20technical%20engineering%20blueprint%20drawing%20of%20a%20geometric%20circle%20on%20grid%20paper%20with%20precise%20measurements%20and%20dimensions%2C%20CAD%20drafting%20style%2C%20blue%20lines%20on%20white%20background&image_size=landscape_16_9" alt="CAD圆形工程图纸">
+    <div class="caption">▲ 配图3：AI用代码画出的圆 —— 工程图纸效果</div>
+  </div>
+
+  <!-- 总结 -->
+  <div class="summary">
+    <h2>总结：AI + FreeCAD 能做什么？</h2>
+    <ul>
+      <li><strong>完全可控</strong>：FreeCAD 的 Python API 能控制几乎所有CAD操作，画圆只是起点</li>
+      <li><strong>无需界面</strong>：<code>FreeCADCmd.exe</code> 支持命令行无头模式，适合自动化批处理</li>
+      <li><strong>多格式输出</strong>：一次脚本执行，同时生成 FCStd、DXF、SVG 三种格式</li>
+      <li><strong>可扩展</strong>：从画圆扩展到矩形、多边形、3D实体、参数化建模等复杂图形</li>
+      <li><strong>AI协作</strong>：用户只需描述需求，AI负责写代码、执行、调试、出图</li>
+    </ul>
+  </div>
+
+  <div class="tip-box">
+    <strong>下一步：</strong>你可以让AI画更复杂的图形——带孔的法兰盘、建筑平面图、机械零件三视图等。只要你能描述出来，AI就能用代码画出来。
+  </div>
+
+  <div class="footer">
+    <p>本文为真实AI编程对话记录 · 2026年7月</p>
+    <p>工具：FreeCAD 0.21 + Python 脚本 + AI编程助手</p>
+  </div>
+
+</div>
+</body>
+</html>

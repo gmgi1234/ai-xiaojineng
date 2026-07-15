@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>画圆成品 · AI 小技能</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .header h1 {
+    font-size: 28px;
+    color: #1a5276;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: #888;
+    font-size: 14px;
+  }
+  .canvas-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    padding: 48px;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+  .circle-stage {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    margin: 0 auto 32px;
+  }
+  .circle-stage svg {
+    width: 100%;
+    height: 100%;
+  }
+  .params {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .param-item {
+    text-align: center;
+  }
+  .param-label {
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .param-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a5276;
+  }
+  .files-section {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 28px;
+  }
+  .files-title {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2e86c1;
+  }
+  .file-name {
+    font-weight: 600;
+    color: #1a5276;
+    font-size: 15px;
+  }
+  .file-info {
+    font-size: 13px;
+    color: #999;
+  }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a5276, #2e86c1);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .canvas-card { padding: 28px 16px; }
+    .circle-stage { width: 280px; height: 280px; }
+    .params { gap: 20px; }
+    .param-value { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="badge">FreeCAD + Python AI 自动绘制</span>
+  <h1>圆形 · 成品展示</h1>
+  <p>AI 编写 Python 脚本控制 FreeCAD 自动绘制</p>
+</div>
+
+<div class="canvas-card">
+  <div class="circle-stage">
+    <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+      <!-- 网格背景 -->
+      <defs>
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e8edf2" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="360" height="360" fill="url(#grid)"/>
+      <!-- 坐标轴 -->
+      <line x1="0" y1="180" x2="360" y2="180" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="180" y1="0" x2="180" y2="360" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- 圆 -->
+      <circle cx="180" cy="180" r="140" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+      <!-- 圆心 -->
+      <circle cx="180" cy="180" r="4" fill="#2563eb"/>
+      <!-- 半径线 -->
+      <line x1="180" y1="180" x2="320" y2="180" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <!-- 标注 -->
+      <text x="188" y="172" font-size="13" fill="#64748b" font-family="monospace">(0,0)</text>
+      <text x="240" y="170" font-size="14" fill="#e74c3c" font-weight="600" font-family="monospace">r=50mm</text>
+      <text x="175" y="30" font-size="11" fill="#aaa">Y</text>
+      <text x="340" y="185" font-size="11" fill="#aaa">X</text>
+    </svg>
+  </div>
+
+  <div class="params">
+    <div class="param-item">
+      <div class="param-label">圆心坐标</div>
+      <div class="param-value">(0, 0, 0)</div>
+    </div>
+    <div class="param-item">
+      <div class="param-label">半径</div>
+      <div class="param-value">50 mm</div>
+    </div>
+    <div class="param-item">
+      <div class="param-label">所在平面</div>
+      <div class="param-value">XY 平面</div>
+    </div>
+  </div>
+
+  <div class="files-section">
+    <div class="files-title">输出文件（共 3 种格式）</div>
+    <div class="file-list">
+      <div class="file-item">
+        <span class="file-name">circle.FCStd</span>
+        <span class="file-info">FreeCAD 原生格式 · 1.4 KB</span>
+      </div>
+      <div class="file-item">
+        <span class="file-name">circle.dxf</span>
+        <span class="file-info">AutoCAD 通用格式 · 5.2 KB</span>
+      </div>
+      <div class="file-item">
+        <span class="file-name">circle.svg</span>
+        <span class="file-info">矢量图格式 · 546 B</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

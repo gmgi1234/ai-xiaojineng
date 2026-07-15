@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从零到一：用 AI 生成 19×19 乘法口诀表的完整过程</title>
+<style>
+  /* ========== 全局 ========== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "微软雅黑", -apple-system, sans-serif;
+    background: #ededed;
+    color: #333;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== 文章容器 ========== */
+  .article {
+    max-width: 750px;             /* 微信推文标准宽度，截图更清晰 */
+    margin: 0 auto;
+    background: #fff;
+    padding: 44px 32px 70px;
+  }
+
+  /* ========== 封面 ========== */
+  .cover {
+    text-align: center;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: #fff;
+    padding: 50px 30px;
+    border-radius: 8px;
+    margin-bottom: 36px;
+  }
+  .cover-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .cover h1 {
+    font-size: 32px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .cover p {
+    font-size: 15px;
+    opacity: 0.85;
+  }
+
+  /* ========== 正文 ========== */
+  .meta {
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 32px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eee;
+  }
+  h2 {
+    font-size: 23px;
+    color: #2c3e50;
+    margin: 44px 0 18px;
+    padding-left: 14px;
+    border-left: 5px solid #3498db;
+  }
+  h3 {
+    font-size: 18px;
+    color: #34495e;
+    margin: 26px 0 12px;
+  }
+  p {
+    font-size: 17px;               /* 长图字号加大，截图后手机阅读清晰 */
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+
+  /* ========== 对话气泡 ========== */
+  .chat {
+    margin: 20px 0;
+  }
+  .bubble {
+    max-width: 88%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 16px;               /* 对话气泡字号加大 */
+    line-height: 1.7;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .bubble-user {
+    background: #95ec69;
+    margin-left: auto;
+    border-radius: 12px 12px 2px 12px;
+  }
+  .bubble-ai {
+    background: #f0f0f0;
+    border-radius: 12px 12px 12px 2px;
+  }
+  .role {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  .role.user { text-align: right; }
+
+  /* ========== 配图框架 ========== */
+  .screenshot {
+    margin: 24px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .screenshot-bar {
+    background: #e0e0e0;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 5px;
+  }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .dot:nth-child(1) { background: #ff5f57; }
+  .dot:nth-child(2) { background: #ffbd2e; }
+  .dot:nth-child(3) { background: #28c941; }
+  .screenshot-url {
+    flex: 1;
+    margin-left: 8px;
+    background: #fff;
+    border-radius: 3px;
+    font-size: 10px;
+    color: #999;
+    padding: 2px 8px;
+    height: 14px;
+    line-height: 14px;
+  }
+  .screenshot-body {
+    background: #fff;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .screenshot-caption {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+
+  /* ========== 缩略表格通用 ========== */
+  .mini-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .mini-table th, .mini-table td {
+    text-align: center;
+    border: 0.5px solid #bbb;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  .mini-table th {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: 600;
+  }
+  .mini-corner {
+    background: #1a252f !important;
+  }
+
+  /* ========== 对比卡片 ========== */
+  .compare {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+  }
+  .compare-card {
+    flex: 1;
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+  }
+  .compare-card h4 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .compare-card .before { color: #e74c3c; }
+  .compare-card .after { color: #27ae60; }
+  .compare-card p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+  }
+
+  /* ========== 提示框 ========== */
+  .tip {
+    background: #eaf6ff;
+    border-left: 5px solid #3498db;
+    padding: 16px 18px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+    font-size: 16px;
+  }
+  .tip strong { color: #2980b9; }
+
+  .warning {
+    background: #fff8e1;
+    border-left: 5px solid #f39c12;
+    padding: 16px 18px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+    font-size: 16px;
+  }
+  .warning strong { color: #e67e22; }
+
+  /* ========== 代码块 ========== */
+  code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #c7254e;
+    font-family: "Consolas", "Courier New", monospace;
+  }
+  .code-block {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: "Consolas", monospace;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.5;
+  }
+
+  /* ========== 表格 ========== */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+  }
+  .info-table th, .info-table td {
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  .info-table th {
+    background: #2c3e50;
+    color: #fff;
+  }
+  .info-table tr:nth-child(even) { background: #f9f9f9; }
+
+  /* ========== 分隔线 ========== */
+  .divider {
+    text-align: center;
+    margin: 40px 0;
+    color: #ccc;
+    font-size: 12px;
+    letter-spacing: 4px;
+  }
+
+  /* ========== 时间线 ========== */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin: 24px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #3498db;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3498db;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #3498db;
+  }
+  .timeline-step {
+    font-size: 13px;
+    color: #3498db;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .timeline-title {
+    font-size: 17px;
+    color: #2c3e50;
+    font-weight: 600;
+  }
+  .timeline-desc {
+    font-size: 14px;
+    color: #777;
+    margin-top: 4px;
+  }
+
+  /* ========== 页脚 ========== */
+  .footer {
+    text-align: center;
+    padding: 40px 0 0;
+    margin-top: 40px;
+    border-top: 2px solid #eee;
+  }
+  .footer h3 {
+    font-size: 18px;
+    color: #2c3e50;
+  }
+  .footer p {
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+  }
+
+  /* ========== 移动端适配 ========== */
+  @media (max-width: 480px) {
+    .article { padding: 20px 16px 40px; }
+    .cover h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    p { font-size: 14px; }
+    .bubble { max-width: 92%; font-size: 13px; }
+    .compare { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<article class="article">
+
+  <!-- ============ 封面 ============ -->
+  <div class="cover">
+    <span class="cover-tag">🔥 AI 实战教程</span>
+    <h1>从零到一<br>用 AI 生成 19×19 乘法口诀表</h1>
+    <p>一次完整的 AI 协作过程 · 四次迭代 · 最终完美适配 A4</p>
+  </div>
+
+  <div class="meta">
+    📅 2026 年 7 月 · ⏱️ 阅读约 5 分钟
+  </div>
+
+  <!-- ============ 引言 ============ -->
+  <p>最近需要一个 1×1 到 19×19 的乘法口诀表，要能直接打印到 A4 纸上。与其自己手动画表格，我直接找 AI 帮忙——没想到一个小小的表格，经历了 <strong>四轮对话、四次迭代</strong>，从雏形到完美。</p>
+  <p>这篇文章完整记录了整个过程，包括我每一轮的需求、AI 的做法、以及每一步的成果。看完你就能学会：怎么跟 AI 沟通才能一步步得到你想要的东西。</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-step">第 1 步</div>
+      <div class="timeline-title">生成基础版表格</div>
+      <div class="timeline-desc">完整 19×19 矩阵，可打印 A4</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-step">第 2 步</div>
+      <div class="timeline-title">美化：下三角 + 列彩色</div>
+      <div class="timeline-desc">删除重复项，每列不同颜色，加大字号</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-step">第 3 步</div>
+      <div class="timeline-title">改为横向版</div>
+      <div class="timeline-desc">利用横向宽度，数字更大更清晰</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-step">第 4 步</div>
+      <div class="timeline-title">完美适配单页 A4</div>
+      <div class="timeline-desc">解决两页溢出，精确计算尺寸</div>
+    </div>
+  </div>
+
+  <div class="divider">· · · · · 正 · 文 · 开 · 始 · · · · ·</div>
+
+  <!-- ============ 第一步 ============ -->
+  <h2>🚀 第一步：一句话生成基础版</h2>
+
+  <div class="chat">
+    <div class="role user">我的需求</div>
+    <div class="bubble bubble-user">帮我做一个 1×1 到 19×19 的乘法口诀表发给我。格式用 html，能直接打印到 A4 纸上的。</div>
+  </div>
+
+  <p>需求很简单直接：<strong>HTML 格式 + 能打印 A4 + 1 到 19 的乘法表</strong>。AI 几秒钟就生成了完整代码。</p>
+
+  <h3>✨ AI 做了什么</h3>
+  <p>AI 很聪明地考虑了几个细节，不只是"堆"一个表格出来：</p>
+
+  <table class="info-table">
+    <tr><th>设计要点</th><th>说明</th></tr>
+    <tr><td>📐 A4 纵向适配</td><td>用 <code>@page</code> 设定纸张尺寸和页边距</td></tr>
+    <tr><td>🎨 深色表头</td><td>行列号用深蓝底白字，一眼能找到</td></tr>
+    <tr><td>🔵 对角线高亮</td><td>1×1、2×2、…… 平方数用浅蓝标注</td></tr>
+    <tr><td>🦓 斑马纹</td><td>间隔行变色，方便阅读定位</td></tr>
+    <tr><td>🖨️ 打印按钮</td><td>页面自带按钮，一键打印</td></tr>
+  </table>
+
+  <h3>📸 成果展示</h3>
+  <p>一版完整、对称的 19×19 矩阵，所有乘积都列出来了：</p>
+
+  <!-- 配图1：初版 -->
+  <div class="screenshot">
+    <div class="screenshot-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="screenshot-url">乘法口诀表.html</div>
+    </div>
+    <div class="screenshot-body" id="mock1"></div>
+  </div>
+  <p class="screenshot-caption">▲ 第一版：完整 19×19 矩阵，深色表头 + 对角线高亮 + 斑马纹</p>
+
+  <p>这一版已经能用了。但仔细看，有个问题：<strong>右上和左下是对称重复的</strong>（比如 3×7 和 7×3 都是 21），信息有冗余。而且全黑白的表格，视觉上不够清晰。</p>
+
+  <!-- ============ 第二步 ============ -->
+  <h2>🎨 第二步：下三角 + 彩色列 + 大字号</h2>
+
+  <div class="chat">
+    <div class="role user">我的需求</div>
+    <div class="bubble bubble-user">把不同的列用不同的颜色区分一下，另外只保留左下的数字就可以了，删除右上重复的结果。另外字号可以不可以再稍微大一点儿？</div>
+  </div>
+
+  <p>这一轮提了<strong>三个需求</strong>，而且都是升级需求——说明在看到第一版后，我知道了自己真正想要什么：</p>
+
+  <div class="compare">
+    <div class="compare-card">
+      <h4>❌ 优化前</h4>
+      <p class="before">完整矩阵，数据重复<br>黑白单调<br>字号偏小</p>
+    </div>
+    <div class="compare-card">
+      <h4>✅ 优化后</h4>
+      <p class="after">下三角，无冗余<br>19 列彩虹色<br>字号加大</p>
+    </div>
+  </div>
+
+  <h3>✨ AI 的巧妙做法</h3>
+  <p>这三点里最巧妙的是<strong>颜色生成</strong>。19 列怎么分配颜色才好看？AI 用了一个聪明的方法——<strong>HSL 色环均分</strong>：</p>
+
+  <div class="code-block">// 每一列在 360° 色环上均匀分布
+const colColor = (j) => {
+  const hue = Math.round((j - 1) * (360 / 19));
+  return `hsl(${hue}, 60%, 88%)`;
+};</div>
+
+  <p>把 360° 色环平均分成 19 份，每一列取一个色相，亮度统一拉到 88%（保证底色浅、数字清晰），饱和度 60%（不刺眼）。这样每列颜色不同，但整体风格统一和谐。</p>
+
+  <h3>📸 成果展示</h3>
+
+  <!-- 配图2：下三角彩色版 -->
+  <div class="screenshot">
+    <div class="screenshot-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="screenshot-url">乘法口诀表.html</div>
+    </div>
+    <div class="screenshot-body" id="mock2"></div>
+  </div>
+  <p class="screenshot-caption">▲ 第二版：下三角 + 19 色彩虹列 + 平方数加粗，信息密度更高</p>
+
+  <div class="tip">
+    <strong>💡 小知识：</strong>传统乘法口诀表就是下三角形（"一一得一，一二得二……"），这种形式天然去掉了重复项，也更符合记忆习惯。
+  </div>
+
+  <!-- ============ 第三步 ============ -->
+  <h2>📐 第三步：改成横向版</h2>
+
+  <div class="chat">
+    <div class="role user">我的需求</div>
+    <div class="bubble bubble-user">帮我把文件做成横版的吧。</div>
+  </div>
+
+  <p>纵向 A4 太窄了，表格被挤得很挤。横向 A4 宽 297mm、高 210mm，宽边变成长边后，每个单元格都能舒展开。AI 很快做了几项调整：</p>
+
+  <table class="info-table">
+    <tr><th>调整项</th><th>纵向版</th><th>横向版</th></tr>
+    <tr><td>📐 纸张方向</td><td>portrait（纵向）</td><td>landscape（横向）</td></tr>
+    <tr><td>🔤 数字字号</td><td>13px</td><td>17px ⬆</td></tr>
+    <tr><td>📏 单元格高度</td><td>12mm</td><td>14mm ⬆</td></tr>
+    <tr><td>📏 表格宽度</td><td>190mm</td><td>277mm ⬆</td></tr>
+  </table>
+
+  <h3>📸 成果展示</h3>
+
+  <!-- 配图3：横向版 -->
+  <div class="screenshot">
+    <div class="screenshot-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="screenshot-url">乘法口诀表.html</div>
+    </div>
+    <div class="screenshot-body" id="mock3"></div>
+  </div>
+  <p class="screenshot-caption">▲ 第三版：横向 A4，单元格明显更大，彩色列效果更突出</p>
+
+  <p>看起来很完美对吧？但当我按下打印……<strong>竟然是两页！</strong> 于是迎来了最关键的第四步。</p>
+
+  <!-- ============ 第四步 ============ -->
+  <h2>🔧 第四步：完美适配单页 A4</h2>
+
+  <div class="chat">
+    <div class="role user">我的需求</div>
+    <div class="bubble bubble-user">这个打印为什么不是一张 A4 纸上的呢？我想要左右是长边、上下是短边，刚好打开成 A4 纸的表。</div>
+  </div>
+
+  <p>这是整个过程中<strong>最硬核的一步</strong>。问题出在哪？AI 没有回避，直接算了笔账：</p>
+
+  <div class="code-block">A4 横向纸张：    297mm × 210mm
+页边距（两侧）：  减去约 16mm
+可用高度：       约 194mm
+
+❌ 横版设置：
+   每行 14mm × 20 行 = 280mm  ← 超出！溢出到第二页
+
+✅ 正确计算：
+   每行 9.2mm × 20 行 = 184mm  ← 刚好放下一页</div>
+
+  <p>根本原因找到了：<strong>横向 A4 的高度只有 210mm</strong>，而表格有 20 行（1 行表头 + 19 行数据），如果每行太高，必然溢出。</p>
+
+  <h3>✨ 解决方案</h3>
+  <p>AI 用了两个关键手段：</p>
+
+  <div class="warning">
+    <strong>🔑 关键操作 1：零页边距</strong><br>
+    把 <code>@page margin: 0</code> 设为零，边距改由 <code>body padding</code> 自己控制——<strong>从源头消除浏览器默认边距的不确定性</strong>。
+  </div>
+
+  <div class="warning">
+    <strong>🔑 关键操作 2：精确行高</strong><br>
+    每行设为 <code>9.2mm</code>，20 行共 <code>184mm</code>，在横向 A4 可用高度内留出余量，确保不溢出。
+  </div>
+
+  <h3>📸 最终成果</h3>
+
+  <!-- 配图4：最终版 -->
+  <div class="screenshot">
+    <div class="screenshot-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="screenshot-url">乘法口诀表.html — 打印预览</div>
+    </div>
+    <div class="screenshot-body" id="mock4"></div>
+  </div>
+  <p class="screenshot-caption">▲ 最终版：完美单页横向 A4，19 色彩虹列 + 下三角 + 平方数加粗</p>
+
+  <div class="tip">
+    <strong>🖨️ 打印小贴士：</strong>打印时记得关闭浏览器的<strong>「页眉页脚」</strong>（Chrome/Edge 在"更多设置"里），否则 URL、日期会吃掉 10-15mm 高度，又会导致溢出到第二页！另外勾选<strong>「背景图形」</strong>才能打印出彩色。
+  </div>
+
+  <!-- ============ 总结 ============ -->
+  <div class="divider">· · · · · 总 · 结 · · · · ·</div>
+
+  <h2>💡 四轮迭代，我学到了什么</h2>
+
+  <p>回顾整个过程，其实就是一次典型的<strong>人机协作</strong>：</p>
+
+  <table class="info-table">
+    <tr><th>步骤</th><th>我的角色</th><th>AI 的角色</th></tr>
+    <tr><td>第 1 步</td><td>提需求</td><td>生成雏形</td></tr>
+    <tr><td>第 2 步</td><td>发现不足，提优化</td><td>彩色 + 下三角</td></tr>
+    <tr><td>第 3 步</td><td>改变方向</td><td>改横向</td></tr>
+    <tr><td>第 4 步</td><td>反馈问题</td><td>精算尺寸，修复</td></tr>
+  </table>
+
+  <h3>三个关键经验</h3>
+
+  <p><strong>1️⃣ 先要一个能用的，再慢慢改</strong><br>
+  我没有一开始就提所有需求（彩色+下三角+横版+单页），而是先要一个基础版，看到成果后再针对不足逐项优化。这样 AI 不会理解错，我也能一步步确认方向。</p>
+
+  <p><strong>2️⃣ 具体描述问题，而不是抱怨</strong><br>
+  第四步我没有说"打印有问题你看看"，而是说"打印是两页，我想要一张 A4"。越具体，AI 越能精准定位。</p>
+
+  <p><strong>3️⃣ 迭代胜过完美</strong><br>
+  四轮对话，每轮都在前一轮基础上改进。这种"小步快跑"的方式，比试图一步到位更高效。</p>
+
+  <p>最终的乘法表：19×19、下三角、19 色彩虹、平方数加粗、完美单页横向 A4。从一句话需求，到一个精致成品——这就是 AI 协作的力量。🎉</p>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <h3>👇 喜欢就收藏转发吧</h3>
+    <p>如果你也想试试 AI 帮你做东西，<br>记得：<strong>先要能用的，再慢慢优化</strong> ✨</p>
+  </div>
+
+</article>
+
+<script>
+  // ============ 配图1：初版（完整矩阵 + 斑马纹 + 对角线） ============
+  function buildMock1() {
+    const N = 19;
+    const wrap = document.getElementById('mock1');
+    const tbl = document.createElement('table');
+    tbl.className = 'mini-table';
+    tbl.style.fontSize = '5px';
+
+    const thead = document.createElement('thead');
+    const hr = document.createElement('tr');
+    const corner = document.createElement('th');
+    corner.className = 'mini-corner';
+    corner.textContent = '×';
+    corner.style.width = '14px';
+    corner.style.height = '14px';
+    hr.appendChild(corner);
+    for (let j = 1; j <= N; j++) {
+      const th = document.createElement('th');
+      th.textContent = j;
+      th.style.width = '14px';
+      th.style.height = '14px';
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (let i = 1; i <= N; i++) {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th');
+      th.textContent = i;
+      th.style.width = '14px';
+      th.style.height = '14px';
+      tr.appendChild(th);
+      for (let j = 1; j <= N; j++) {
+        const td = document.createElement('td');
+        td.textContent = i * j;
+        td.style.width = '14px';
+        td.style.height = '14px';
+        if (i === j) {
+          td.style.background = '#d6eaf8';
+          td.style.fontWeight = '700';
+        } else if ((i + j) % 2 === 0) {
+          td.style.background = '#f8f9fa';
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    tbl.appendChild(tbody);
+    wrap.appendChild(tbl);
+  }
+
+  // ============ 配图2：下三角 + 彩色列 ============
+  function buildMock2() {
+    const N = 19;
+    const wrap = document.getElementById('mock2');
+    const tbl = document.createElement('table');
+    tbl.className = 'mini-table';
+    tbl.style.fontSize = '5px';
+
+    const colColor = (j) => `hsl(${Math.round((j-1)*(360/N))}, 60%, 88%)`;
+
+    const thead = document.createElement('thead');
+    const hr = document.createElement('tr');
+    const corner = document.createElement('th');
+    corner.className = 'mini-corner';
+    corner.textContent = '×';
+    corner.style.width = '14px';
+    corner.style.height = '14px';
+    hr.appendChild(corner);
+    for (let j = 1; j <= N; j++) {
+      const th = document.createElement('th');
+      th.textContent = j;
+      th.style.width = '14px';
+      th.style.height = '14px';
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (let i = 1; i <= N; i++) {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th');
+      th.textContent = i;
+      th.style.width = '14px';
+      th.style.height = '14px';
+      tr.appendChild(th);
+      for (let j = 1; j <= N; j++) {
+        const td = document.createElement('td');
+        td.style.width = '14px';
+        td.style.height = '14px';
+        if (j > i) {
+          td.style.background = '#fff';
+          td.style.borderColor = '#eee';
+        } else {
+          td.textContent = i * j;
+          td.style.background = colColor(j);
+          if (i === j) td.style.fontWeight = '700';
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    tbl.appendChild(tbody);
+    wrap.appendChild(tbl);
+  }
+
+  // ============ 配图3：横向版（更大单元格 + 横向比例） ============
+  function buildMock3() {
+    const N = 19;
+    const wrap = document.getElementById('mock3');
+    // 横版：加一个"横向纸张"的背景框
+    const pageFrame = document.createElement('div');
+    pageFrame.style.background = '#fff';
+    pageFrame.style.border = '2px solid #ddd';
+    pageFrame.style.borderRadius = '4px';
+    pageFrame.style.padding = '6px';
+    pageFrame.style.width = '100%';
+
+    const tbl = document.createElement('table');
+    tbl.className = 'mini-table';
+    tbl.style.fontSize = '5px';
+    tbl.style.width = '100%';
+
+    const colColor = (j) => `hsl(${Math.round((j-1)*(360/N))}, 60%, 88%)`;
+
+    const thead = document.createElement('thead');
+    const hr = document.createElement('tr');
+    const corner = document.createElement('th');
+    corner.className = 'mini-corner';
+    corner.textContent = '×';
+    hr.appendChild(corner);
+    for (let j = 1; j <= N; j++) {
+      const th = document.createElement('th');
+      th.textContent = j;
+      th.style.height = '12px';
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (let i = 1; i <= N; i++) {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th');
+      th.textContent = i;
+      th.style.height = '12px';
+      tr.appendChild(th);
+      for (let j = 1; j <= N; j++) {
+        const td = document.createElement('td');
+        td.style.height = '12px';
+        if (j > i) {
+          td.style.background = '#fff';
+          td.style.borderColor = '#eee';
+        } else {
+          td.textContent = i * j;
+          td.style.background = colColor(j);
+          if (i === j) td.style.fontWeight = '700';
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    tbl.appendChild(tbody);
+    pageFrame.appendChild(tbl);
+    wrap.appendChild(pageFrame);
+  }
+
+  // ============ 配图4：最终版（单页横向 + 打印预览风格） ============
+  function buildMock4() {
+    const N = 19;
+    const wrap = document.getElementById('mock4');
+    const pageFrame = document.createElement('div');
+    pageFrame.style.background = '#fff';
+    pageFrame.style.border = '2px solid #3498db';
+    pageFrame.style.borderRadius = '4px';
+    pageFrame.style.padding = '8px';
+    pageFrame.style.width = '100%';
+    pageFrame.style.boxShadow = '0 0 0 4px #eaf6ff';
+
+    // 打印预览顶部标识
+    const label = document.createElement('div');
+    label.style.textAlign = 'center';
+    label.style.fontSize = '7px';
+    label.style.color = '#3498db';
+    label.style.fontWeight = '700';
+    label.style.marginBottom = '4px';
+    label.textContent = '📄 A4 横向 · 单页打印预览';
+    pageFrame.appendChild(label);
+
+    const tbl = document.createElement('table');
+    tbl.className = 'mini-table';
+    tbl.style.fontSize = '5px';
+    tbl.style.width = '100%';
+
+    const colColor = (j) => `hsl(${Math.round((j-1)*(360/N))}, 60%, 88%)`;
+
+    const thead = document.createElement('thead');
+    const hr = document.createElement('tr');
+    const corner = document.createElement('th');
+    corner.className = 'mini-corner';
+    corner.textContent = '×';
+    hr.appendChild(corner);
+    for (let j = 1; j <= N; j++) {
+      const th = document.createElement('th');
+      th.textContent = j;
+      th.style.height = '11px';
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (let i = 1; i <= N; i++) {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th');
+      th.textContent = i;
+      th.style.height = '11px';
+      tr.appendChild(th);
+      for (let j = 1; j <= N; j++) {
+        const td = document.createElement('td');
+        td.style.height = '11px';
+        if (j > i) {
+          td.style.background = '#fff';
+          td.style.borderColor = '#eee';
+        } else {
+          td.textContent = i * j;
+          td.style.background = colColor(j);
+          if (i === j) td.style.fontWeight = '700';
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    tbl.appendChild(tbody);
+    pageFrame.appendChild(tbl);
+    wrap.appendChild(pageFrame);
+  }
+
+  // 渲染所有配图
+  buildMock1();
+  buildMock2();
+  buildMock3();
+  buildMock4();
+</script>
+
+</body>
+</html>

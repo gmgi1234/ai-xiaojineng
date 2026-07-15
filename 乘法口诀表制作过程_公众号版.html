@@ -1,0 +1,2035 @@
+<!-- 使用说明：浏览器打开，Ctrl+A全选，Ctrl+C复制，粘贴到公众号编辑器 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从零到一：用 AI 生成 19×19 乘法口诀表的完整过程</title>
+</head>
+<body style="margin:0;padding:0;background:#ededed;color:#333;font-family:'PingFang SC','Microsoft YaHei','微软雅黑',-apple-system,sans-serif;line-height:1.8;">
+
+<section style="max-width:750px;margin:0 auto;background:#fff;padding:44px 32px 70px 32px;">
+
+  <!-- ============ 封面 ============ -->
+  <section style="text-align:center;background:linear-gradient(135deg,#2c3e50 0%,#3498db 100%);color:#fff;padding:50px 30px;border-radius:8px;margin:0 0 36px 0;">
+    <span style="display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:12px;margin:0 0 16px 0;letter-spacing:1px;">🔥 AI 实战教程</span>
+    <h1 style="margin:0 0 14px 0;padding:0;font-size:32px;line-height:1.5;color:#fff;">从零到一<br>用 AI 生成 19×19 乘法口诀表</h1>
+    <p style="margin:0;padding:0;font-size:15px;opacity:0.85;">一次完整的 AI 协作过程 · 四次迭代 · 最终完美适配 A4</p>
+  </section>
+
+  <p style="margin:0 0 32px 0;padding:0 0 22px 0;text-align:center;color:#999;font-size:14px;border-bottom:1px solid #eee;">📅 2026 年 7 月 · ⏱️ 阅读约 5 分钟</p>
+
+  <!-- ============ 引言 ============ -->
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">最近需要一个 1×1 到 19×19 的乘法口诀表，要能直接打印到 A4 纸上。与其自己手动画表格，我直接找 AI 帮忙——没想到一个小小的表格，经历了 <strong>四轮对话、四次迭代</strong>，从雏形到完美。</p>
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">这篇文章完整记录了整个过程，包括我每一轮的需求、AI 的做法、以及每一步的成果。看完你就能学会：怎么跟 AI 沟通才能一步步得到你想要的东西。</p>
+
+  <!-- ============ 时间线 ============ -->
+  <section style="border-left:2px solid #3498db;padding:0 0 0 20px;margin:24px 0;">
+    <section style="margin:0 0 20px 0;padding:0;">
+      <p style="margin:0 0 2px 0;padding:0;font-size:13px;color:#3498db;font-weight:600;">● 第 1 步</p>
+      <p style="margin:0;padding:0;font-size:17px;color:#2c3e50;font-weight:600;">生成基础版表格</p>
+      <p style="margin:4px 0 0 0;padding:0;font-size:14px;color:#777;">完整 19×19 矩阵，可打印 A4</p>
+    </section>
+    <section style="margin:0 0 20px 0;padding:0;">
+      <p style="margin:0 0 2px 0;padding:0;font-size:13px;color:#3498db;font-weight:600;">● 第 2 步</p>
+      <p style="margin:0;padding:0;font-size:17px;color:#2c3e50;font-weight:600;">美化：下三角 + 列彩色</p>
+      <p style="margin:4px 0 0 0;padding:0;font-size:14px;color:#777;">删除重复项，每列不同颜色，加大字号</p>
+    </section>
+    <section style="margin:0 0 20px 0;padding:0;">
+      <p style="margin:0 0 2px 0;padding:0;font-size:13px;color:#3498db;font-weight:600;">● 第 3 步</p>
+      <p style="margin:0;padding:0;font-size:17px;color:#2c3e50;font-weight:600;">改为横向版</p>
+      <p style="margin:4px 0 0 0;padding:0;font-size:14px;color:#777;">利用横向宽度，数字更大更清晰</p>
+    </section>
+    <section style="margin:0;padding:0;">
+      <p style="margin:0 0 2px 0;padding:0;font-size:13px;color:#3498db;font-weight:600;">● 第 4 步</p>
+      <p style="margin:0;padding:0;font-size:17px;color:#2c3e50;font-weight:600;">完美适配单页 A4</p>
+      <p style="margin:4px 0 0 0;padding:0;font-size:14px;color:#777;">解决两页溢出，精确计算尺寸</p>
+    </section>
+  </section>
+
+  <p style="text-align:center;margin:40px 0;padding:0;color:#ccc;font-size:12px;letter-spacing:4px;">· · · · · 正 · 文 · 开 · 始 · · · · ·</p>
+
+  <!-- ============ 第一步 ============ -->
+  <h2 style="margin:44px 0 18px 0;padding:0 0 0 14px;font-size:23px;color:#2c3e50;border-left:5px solid #3498db;">🚀 第一步：一句话生成基础版</h2>
+
+  <section style="background:#95ec69;padding:14px 18px;border-radius:12px 12px 2px 12px;margin:20px 0 8px 12%;font-size:16px;line-height:1.7;">
+    <p style="margin:0 0 4px 0;padding:0;text-align:right;font-size:11px;color:#999;">我的需求</p>
+    <p style="margin:0;padding:0;">帮我做一个 1×1 到 19×19 的乘法口诀表发给我。格式用 html，能直接打印到 A4 纸上的。</p>
+  </section>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">需求很简单直接：<strong>HTML 格式 + 能打印 A4 + 1 到 19 的乘法表</strong>。AI 几秒钟就生成了完整代码。</p>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">✨ AI 做了什么</h3>
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">AI 很聪明地考虑了几个细节，不只是"堆"一个表格出来：</p>
+
+  <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;">
+    <tr><th style="border:1px solid #ddd;padding:10px 14px;text-align:left;background:#2c3e50;color:#fff;">设计要点</th><th style="border:1px solid #ddd;padding:10px 14px;text-align:left;background:#2c3e50;color:#fff;">说明</th></tr>
+    <tr><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;">📐 A4 纵向适配</td><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;">用 <code style="background:#f4f4f4;padding:2px 6px;border-radius:3px;font-size:13px;color:#c7254e;font-family:Consolas,'Courier New',monospace;">@page</code> 设定纸张尺寸和页边距</td></tr>
+    <tr><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;background:#f9f9f9;">🎨 深色表头</td><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;background:#f9f9f9;">行列号用深蓝底白字，一眼能找到</td></tr>
+    <tr><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;">🔵 对角线高亮</td><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;">1×1、2×2、…… 平方数用浅蓝标注</td></tr>
+    <tr><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;background:#f9f9f9;">🦓 斑马纹</td><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;background:#f9f9f9;">间隔行变色，方便阅读定位</td></tr>
+    <tr><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;">🖨️ 打印按钮</td><td style="border:1px solid #ddd;padding:10px 14px;text-align:left;">页面自带按钮，一键打印</td></tr>
+  </table>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">📸 成果展示</h3>
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">一版完整、对称的 19×19 矩阵，所有乘积都列出来了：</p>
+
+  <!-- 配图1：初版 -->
+  <section style="margin:24px 0;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+    <table style="width:100%;border-collapse:collapse;background:#e0e0e0;height:22px;"><tr>
+      <td style="padding:0 10px;white-space:nowrap;width:60px;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff5f57;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffbd2e;margin-left:5px;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#28c941;margin-left:5px;"></span>
+      </td>
+      <td style="padding:2px 8px;background:#fff;border-radius:3px;font-size:10px;color:#999;">乘法口诀表.html</td>
+    </tr></table>
+    <section style="background:#fff;padding:8px;text-align:center;">
+      <table style="border-collapse:collapse;table-layout:fixed;width:100%;font-size:4px;line-height:1;">
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#1a252f;color:#fff;width:5%;padding:1px 0;">×</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">1</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">2</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">3</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">4</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">5</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">6</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">7</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">8</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">9</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">10</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">11</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">12</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">13</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">14</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">15</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">16</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">17</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">18</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">19</th>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">1</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">1</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">2</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">3</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">4</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">5</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">7</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">9</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">11</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">13</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">17</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">19</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">2</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">2</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">4</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">22</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">26</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">34</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">38</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">3</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">3</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">9</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">21</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">27</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">33</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">39</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">51</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">57</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">4</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">4</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">44</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">52</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">64</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">68</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">76</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">5</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">5</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">25</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">35</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">50</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">55</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">65</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">75</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">85</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">95</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">6</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">66</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">78</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">102</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">114</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">7</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">7</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">21</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">35</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">49</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">63</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">77</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">91</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">98</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">105</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">119</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">133</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">8</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">64</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">88</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">104</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">128</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">136</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">152</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">9</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">9</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">27</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">63</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">81</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">99</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">117</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">135</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">153</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">162</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">171</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">10</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">50</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">100</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">110</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">130</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">140</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">150</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">160</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">170</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">190</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">11</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">11</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">22</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">33</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">44</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">55</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">66</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">77</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">88</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">99</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">110</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">121</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">132</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">143</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">154</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">165</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">176</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">187</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">198</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">209</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">12</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">132</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">156</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">168</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">192</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">204</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">216</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">228</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">13</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">13</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">26</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">39</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">52</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">65</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">78</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">91</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">104</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">117</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">130</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">143</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">156</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">169</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">182</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">195</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">208</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">221</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">234</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">247</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">14</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">98</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">140</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">154</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">168</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">182</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">196</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">210</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">224</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">238</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">252</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">266</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">15</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">75</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">105</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">135</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">150</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">165</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">195</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">210</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">225</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">240</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">255</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">270</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">285</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">16</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">64</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">128</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">160</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">176</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">192</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">208</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">224</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">240</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">256</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">272</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">288</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">304</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">17</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">17</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">34</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">51</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">68</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">85</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">102</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">119</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">136</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">153</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">170</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">187</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">204</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">221</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">238</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">255</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">272</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">289</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">306</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">323</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">18</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">162</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">198</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">216</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">234</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">252</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">270</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">288</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">306</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">324</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">342</td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">19</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">19</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">38</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">57</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">76</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">95</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">114</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">133</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">152</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">171</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">190</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">209</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">228</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">247</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">266</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">285</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">304</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#f8f9fa;font-weight:400;padding:1px 0;">323</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#fff;font-weight:400;padding:1px 0;">342</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:#d6eaf8;font-weight:700;padding:1px 0;">361</td>
+</tr>
+</table>
+    </section>
+  </section>
+  <p style="text-align:center;font-size:13px;color:#888;margin:8px 0 20px 0;padding:0;">▲ 第一版：完整 19×19 矩阵，深色表头 + 对角线高亮 + 斑马纹</p>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">这一版已经能用了。但仔细看，有个问题：<strong>右上和左下是对称重复的</strong>（比如 3×7 和 7×3 都是 21），信息有冗余。而且全黑白的表格，视觉上不够清晰。</p>
+
+  <!-- ============ 第二步 ============ -->
+  <h2 style="margin:44px 0 18px 0;padding:0 0 0 14px;font-size:23px;color:#2c3e50;border-left:5px solid #3498db;">🎨 第二步：下三角 + 彩色列 + 大字号</h2>
+
+  <section style="background:#95ec69;padding:14px 18px;border-radius:12px 12px 2px 12px;margin:20px 0 8px 12%;font-size:16px;line-height:1.7;">
+    <p style="margin:0 0 4px 0;padding:0;text-align:right;font-size:11px;color:#999;">我的需求</p>
+    <p style="margin:0;padding:0;">把不同的列用不同的颜色区分一下，另外只保留左下的数字就可以了，删除右上重复的结果。另外字号可以不可以再稍微大一点儿？</p>
+  </section>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">这一轮提了<strong>三个需求</strong>，而且都是升级需求——说明在看到第一版后，我知道了自己真正想要什么：</p>
+
+  <table style="width:100%;border-collapse:separate;border-spacing:4px 0;margin:16px 0;"><tr>
+    <td style="width:50%;background:#f9f9f9;border-radius:6px;padding:12px;text-align:center;vertical-align:top;">
+      <p style="margin:0 0 6px 0;padding:0;font-size:15px;font-weight:600;">❌ 优化前</p>
+      <p style="margin:0;padding:0;font-size:14px;color:#e74c3c;">完整矩阵，数据重复<br>黑白单调<br>字号偏小</p>
+    </td>
+    <td style="width:50%;background:#f9f9f9;border-radius:6px;padding:12px;text-align:center;vertical-align:top;">
+      <p style="margin:0 0 6px 0;padding:0;font-size:15px;font-weight:600;">✅ 优化后</p>
+      <p style="margin:0;padding:0;font-size:14px;color:#27ae60;">下三角，无冗余<br>19 列彩虹色<br>字号加大</p>
+    </td>
+  </tr></table>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">✨ AI 的巧妙做法</h3>
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">这三点里最巧妙的是<strong>颜色生成</strong>。19 列怎么分配颜色才好看？AI 用了一个聪明的方法——<strong>HSL 色环均分</strong>：</p>
+
+  <section style="background:#2d2d2d;color:#f8f8f2;padding:16px;border-radius:6px;font-size:13px;font-family:Consolas,monospace;line-height:1.5;overflow-x:auto;margin:16px 0;white-space:pre-wrap;">// 每一列在 360° 色环上均匀分布
+const colColor = (j) => {
+  const hue = Math.round((j - 1) * (360 / 19));
+  return `hsl(${hue}, 60%, 88%)`;
+};</section>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">把 360° 色环平均分成 19 份，每一列取一个色相，亮度统一拉到 88%（保证底色浅、数字清晰），饱和度 60%（不刺眼）。这样每列颜色不同，但整体风格统一和谐。</p>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">📸 成果展示</h3>
+
+  <!-- 配图2：下三角彩色版 -->
+  <section style="margin:24px 0;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+    <table style="width:100%;border-collapse:collapse;background:#e0e0e0;height:22px;"><tr>
+      <td style="padding:0 10px;white-space:nowrap;width:60px;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff5f57;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffbd2e;margin-left:5px;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#28c941;margin-left:5px;"></span>
+      </td>
+      <td style="padding:2px 8px;background:#fff;border-radius:3px;font-size:10px;color:#999;">乘法口诀表.html</td>
+    </tr></table>
+    <section style="background:#fff;padding:8px;text-align:center;">
+      <table style="border-collapse:collapse;table-layout:fixed;width:100%;font-size:4px;line-height:1;">
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#1a252f;color:#fff;width:5%;padding:1px 0;">×</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">1</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">2</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">3</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">4</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">5</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">6</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">7</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">8</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">9</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">10</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">11</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">12</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">13</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">14</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">15</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">16</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">17</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">18</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">19</th>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">1</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:700;padding:1px 0;">1</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">2</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">2</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:700;padding:1px 0;">4</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">3</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">3</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:700;padding:1px 0;">9</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">4</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">4</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:700;padding:1px 0;">16</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">5</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">5</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:700;padding:1px 0;">25</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">6</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:700;padding:1px 0;">36</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">7</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">7</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">21</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">35</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:700;padding:1px 0;">49</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">8</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:700;padding:1px 0;">64</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">9</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">9</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">27</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">63</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:700;padding:1px 0;">81</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">10</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">50</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:700;padding:1px 0;">100</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">11</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">11</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">22</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">33</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">44</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">55</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">66</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">77</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">88</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">99</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">110</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:700;padding:1px 0;">121</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">12</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">132</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:700;padding:1px 0;">144</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">13</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">13</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">26</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">39</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">52</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">65</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">78</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">91</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">104</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">117</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">130</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">143</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">156</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:700;padding:1px 0;">169</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">14</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">98</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">140</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">154</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">168</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">182</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:700;padding:1px 0;">196</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">15</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">75</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">105</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">135</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">150</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">165</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">195</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">210</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:700;padding:1px 0;">225</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">16</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">64</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">128</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">160</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">176</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">192</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">208</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">224</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">240</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:700;padding:1px 0;">256</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">17</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">17</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">34</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">51</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">68</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">85</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">102</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">119</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">136</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">153</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">170</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">187</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">204</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">221</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">238</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">255</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">272</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:700;padding:1px 0;">289</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">18</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">162</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">198</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">216</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">234</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">252</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">270</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">288</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:400;padding:1px 0;">306</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(322, 60%, 88%);font-weight:700;padding:1px 0;">324</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">19</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">19</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">38</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">57</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">76</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">95</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">114</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">133</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">152</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">171</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">190</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">209</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">228</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">247</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">266</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">285</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">304</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:400;padding:1px 0;">323</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(322, 60%, 88%);font-weight:400;padding:1px 0;">342</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(341, 60%, 88%);font-weight:700;padding:1px 0;">361</td>
+</tr>
+</table>
+    </section>
+  </section>
+  <p style="text-align:center;font-size:13px;color:#888;margin:8px 0 20px 0;padding:0;">▲ 第二版：下三角 + 19 色彩虹列，平方数加粗</p>
+
+  <section style="background:#eaf6ff;border-left:5px solid #3498db;padding:16px 18px;border-radius:0 6px 6px 0;margin:20px 0;font-size:16px;"><strong style="color:#2980b9;">💡 小知识：</strong>传统乘法口诀表就是下三角形（"一一得一，一二得二……"），这种形式天然去掉了重复项，也更符合记忆习惯。</section>
+
+  <!-- ============ 第三步 ============ -->
+  <h2 style="margin:44px 0 18px 0;padding:0 0 0 14px;font-size:23px;color:#2c3e50;border-left:5px solid #3498db;">📐 第三步：改成横向版</h2>
+
+  <section style="background:#95ec69;padding:14px 18px;border-radius:12px 12px 2px 12px;margin:20px 0 8px 12%;font-size:16px;line-height:1.7;">
+    <p style="margin:0 0 4px 0;padding:0;text-align:right;font-size:11px;color:#999;">我的需求</p>
+    <p style="margin:0;padding:0;">帮我把文件做成横版的吧。</p>
+  </section>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">纵向 A4 太窄了，表格被挤得很挤。横向 A4 宽 297mm、高 210mm，宽边变成长边后，每个单元格都能舒展开。AI 很快做了几项调整：</p>
+
+  <table style="width:100%;border-collapse:collapse;font-size:14px;margin:8px 0;">
+    <tr style="background:#f1f5f9;">
+      <th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;color:#1a5276;">调整项</th>
+      <th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;color:#1a5276;">纵向版</th>
+      <th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;color:#1a5276;">横向版</th>
+    </tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">📐 纸张方向</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">portrait（纵向）</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">landscape（横向）</td></tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">🔤 数字字号</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">13px</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">17px ⬆</td></tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">📏 单元格高度</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">12mm</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">14mm ⬆</td></tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">📏 表格宽度</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">190mm</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">277mm ⬆</td></tr>
+  </table>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">📸 成果展示</h3>
+
+  <!-- 配图3：横向版 -->
+  <section style="margin:24px 0;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+    <table style="width:100%;border-collapse:collapse;background:#e0e0e0;height:22px;"><tr>
+      <td style="padding:0 10px;white-space:nowrap;width:60px;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff5f57;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffbd2e;margin-left:5px;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#28c941;margin-left:5px;"></span>
+      </td>
+      <td style="padding:2px 8px;background:#fff;border-radius:3px;font-size:10px;color:#999;">乘法口诀表.html</td>
+    </tr></table>
+    <section style="background:#fff;padding:8px;text-align:center;">
+      <section style="background:#fff;border:2px solid #ddd;border-radius:4px;padding:6px;">
+<table style="border-collapse:collapse;table-layout:fixed;width:100%;font-size:4px;line-height:1;">
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#1a252f;color:#fff;width:5%;padding:1px 0;">×</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">1</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">2</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">3</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">4</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">5</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">6</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">7</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">8</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">9</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">10</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">11</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">12</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">13</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">14</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">15</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">16</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">17</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">18</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">19</th>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">1</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:700;padding:1px 0;">1</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">2</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">2</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:700;padding:1px 0;">4</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">3</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">3</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:700;padding:1px 0;">9</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">4</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">4</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:700;padding:1px 0;">16</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">5</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">5</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:700;padding:1px 0;">25</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">6</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:700;padding:1px 0;">36</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">7</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">7</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">21</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">35</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:700;padding:1px 0;">49</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">8</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:700;padding:1px 0;">64</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">9</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">9</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">27</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">63</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:700;padding:1px 0;">81</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">10</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">50</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:700;padding:1px 0;">100</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">11</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">11</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">22</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">33</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">44</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">55</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">66</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">77</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">88</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">99</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">110</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:700;padding:1px 0;">121</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">12</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">132</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:700;padding:1px 0;">144</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">13</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">13</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">26</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">39</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">52</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">65</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">78</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">91</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">104</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">117</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">130</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">143</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">156</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:700;padding:1px 0;">169</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">14</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">98</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">140</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">154</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">168</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">182</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:700;padding:1px 0;">196</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">15</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">75</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">105</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">135</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">150</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">165</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">195</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">210</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:700;padding:1px 0;">225</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">16</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">64</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">128</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">160</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">176</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">192</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">208</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">224</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">240</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:700;padding:1px 0;">256</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">17</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">17</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">34</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">51</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">68</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">85</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">102</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">119</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">136</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">153</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">170</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">187</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">204</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">221</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">238</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">255</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">272</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:700;padding:1px 0;">289</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">18</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">162</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">198</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">216</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">234</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">252</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">270</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">288</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:400;padding:1px 0;">306</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(322, 60%, 88%);font-weight:700;padding:1px 0;">324</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">19</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">19</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">38</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">57</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">76</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">95</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">114</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">133</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">152</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">171</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">190</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">209</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">228</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">247</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">266</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">285</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">304</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:400;padding:1px 0;">323</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(322, 60%, 88%);font-weight:400;padding:1px 0;">342</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(341, 60%, 88%);font-weight:700;padding:1px 0;">361</td>
+</tr>
+</table>
+</section>
+    </section>
+  </section>
+  <p style="text-align:center;font-size:13px;color:#888;margin:8px 0 20px 0;padding:0;">▲ 第三版：横向 A4，单元格明显更大，彩色列效果更突出</p>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">看起来很完美对吧？但当我按下打印……<strong>竟然是两页！</strong> 于是迎来了最关键的第四步。</p>
+
+  <!-- ============ 第四步 ============ -->
+  <h2 style="margin:44px 0 18px 0;padding:0 0 0 14px;font-size:23px;color:#2c3e50;border-left:5px solid #3498db;">🔧 第四步：完美适配单页 A4</h2>
+
+  <section style="background:#95ec69;padding:14px 18px;border-radius:12px 12px 2px 12px;margin:20px 0 8px 12%;font-size:16px;line-height:1.7;">
+    <p style="margin:0 0 4px 0;padding:0;text-align:right;font-size:11px;color:#999;">我的需求</p>
+    <p style="margin:0;padding:0;">这个打印为什么不是一张 A4 纸上的呢？我想要左右是长边、上下是短边，刚好打开成 A4 纸的表。</p>
+  </section>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">这是整个过程中<strong>最硬核的一步</strong>。问题出在哪？AI 没有回避，直接算了笔账：</p>
+
+  <section style="background:#1e1e2e;color:#cdd6f4;padding:16px 18px;border-radius:8px;font-family:Consolas,Monaco,monospace;font-size:13px;line-height:1.6;overflow-x:auto;">A4 横向纸张：    297mm × 210mm<br/>页边距（两侧）：  减去约 16mm<br/>可用高度：       约 194mm<br/><br/><span style="color:#f38ba8;">❌ 横版设置：</span><br/>&nbsp;&nbsp;每行 14mm × 20 行 = 280mm  ← 超出！溢出到第二页<br/><br/><span style="color:#a6e3a1;">✅ 正确计算：</span><br/>&nbsp;&nbsp;每行 9.2mm × 20 行 = 184mm  ← 刚好放下一页</section>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">根本原因找到了：<strong>横向 A4 的高度只有 210mm</strong>，而表格有 20 行（1 行表头 + 19 行数据），如果每行太高，必然溢出。</p>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">✨ 解决方案</h3>
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">AI 用了两个关键手段：</p>
+
+  <section style="background:#fff8e1;border-left:4px solid #f39c12;padding:14px 18px;border-radius:8px;margin:0 0 14px 0;">
+    <p style="margin:0;padding:0;"><strong>🔑 关键操作 1：零页边距</strong><br>把 <code style="background:#f4f4f4;padding:2px 6px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:14px;color:#c7254e;">@page margin: 0</code> 设为零，边距改由 <code style="background:#f4f4f4;padding:2px 6px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:14px;color:#c7254e;">body padding</code> 自己控制——<strong>从源头消除浏览器默认边距的不确定性</strong>。</p>
+  </section>
+
+  <section style="background:#fff8e1;border-left:4px solid #f39c12;padding:14px 18px;border-radius:8px;margin:0 0 14px 0;">
+    <p style="margin:0;padding:0;"><strong>🔑 关键操作 2：精确行高</strong><br>每行设为 <code style="background:#f4f4f4;padding:2px 6px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:14px;color:#c7254e;">9.2mm</code>，20 行共 <code style="background:#f4f4f4;padding:2px 6px;border-radius:4px;font-family:Consolas,Monaco,monospace;font-size:14px;color:#c7254e;">184mm</code>，在横向 A4 可用高度内留出余量，确保不溢出。</p>
+  </section>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">📸 最终成果</h3>
+
+  <!-- 配图4：最终版 -->
+  <section style="margin:24px 0;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+    <table style="width:100%;border-collapse:collapse;background:#e0e0e0;height:22px;"><tr>
+      <td style="padding:0 10px;white-space:nowrap;width:60px;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff5f57;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffbd2e;margin-left:5px;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#28c941;margin-left:5px;"></span>
+      </td>
+      <td style="padding:2px 8px;background:#fff;border-radius:3px;font-size:10px;color:#999;">乘法口诀表.html — 打印预览</td>
+    </tr></table>
+    <section style="background:#fff;padding:8px;text-align:center;">
+      <section style="background:#fff;border:2px solid #3498db;border-radius:4px;padding:8px;box-shadow:0 0 0 4px #eaf6ff;">
+<p style="margin:0 0 4px 0;text-align:center;font-size:7px;color:#3498db;font-weight:700;">📄 A4 横向 · 单页打印预览</p>
+<table style="border-collapse:collapse;table-layout:fixed;width:100%;font-size:4px;line-height:1;">
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#1a252f;color:#fff;width:5%;padding:1px 0;">×</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">1</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">2</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">3</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">4</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">5</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">6</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">7</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">8</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">9</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">10</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">11</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">12</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">13</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">14</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">15</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">16</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">17</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">18</th>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;width:5%;padding:1px 0;">19</th>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">1</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:700;padding:1px 0;">1</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">2</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">2</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:700;padding:1px 0;">4</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">3</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">3</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:700;padding:1px 0;">9</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">4</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">4</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:700;padding:1px 0;">16</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">5</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">5</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:700;padding:1px 0;">25</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">6</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">6</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:700;padding:1px 0;">36</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">7</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">7</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">21</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">35</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:700;padding:1px 0;">49</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">8</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">8</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:700;padding:1px 0;">64</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">9</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">9</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">27</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">63</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:700;padding:1px 0;">81</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">10</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">10</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">20</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">40</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">50</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:700;padding:1px 0;">100</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">11</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">11</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">22</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">33</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">44</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">55</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">66</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">77</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">88</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">99</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">110</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:700;padding:1px 0;">121</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">12</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">12</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">24</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">132</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:700;padding:1px 0;">144</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">13</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">13</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">26</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">39</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">52</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">65</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">78</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">91</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">104</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">117</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">130</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">143</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">156</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:700;padding:1px 0;">169</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">14</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">14</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">28</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">42</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">56</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">70</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">84</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">98</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">140</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">154</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">168</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">182</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:700;padding:1px 0;">196</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">15</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">15</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">30</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">45</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">60</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">75</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">105</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">120</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">135</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">150</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">165</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">195</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">210</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:700;padding:1px 0;">225</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">16</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">16</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">32</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">48</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">64</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">80</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">96</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">112</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">128</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">160</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">176</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">192</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">208</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">224</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">240</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:700;padding:1px 0;">256</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">17</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">17</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">34</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">51</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">68</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">85</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">102</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">119</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">136</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">153</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">170</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">187</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">204</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">221</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">238</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">255</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">272</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:700;padding:1px 0;">289</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">18</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">18</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">36</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">54</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">72</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">90</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">108</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">126</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">144</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">162</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">180</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">198</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">216</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">234</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">252</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">270</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">288</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:400;padding:1px 0;">306</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(322, 60%, 88%);font-weight:700;padding:1px 0;">324</td>
+<td style="border:0.5px solid #eee;text-align:center;background:#fff;padding:1px 0;"></td>
+</tr>
+<tr>
+<th style="border:0.5px solid #bbb;text-align:center;background:#2c3e50;color:#fff;padding:1px 0;">19</th>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(0, 60%, 88%);font-weight:400;padding:1px 0;">19</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(19, 60%, 88%);font-weight:400;padding:1px 0;">38</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(38, 60%, 88%);font-weight:400;padding:1px 0;">57</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(57, 60%, 88%);font-weight:400;padding:1px 0;">76</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(76, 60%, 88%);font-weight:400;padding:1px 0;">95</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(95, 60%, 88%);font-weight:400;padding:1px 0;">114</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(114, 60%, 88%);font-weight:400;padding:1px 0;">133</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(133, 60%, 88%);font-weight:400;padding:1px 0;">152</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(152, 60%, 88%);font-weight:400;padding:1px 0;">171</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(171, 60%, 88%);font-weight:400;padding:1px 0;">190</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(189, 60%, 88%);font-weight:400;padding:1px 0;">209</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(208, 60%, 88%);font-weight:400;padding:1px 0;">228</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(227, 60%, 88%);font-weight:400;padding:1px 0;">247</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(246, 60%, 88%);font-weight:400;padding:1px 0;">266</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(265, 60%, 88%);font-weight:400;padding:1px 0;">285</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(284, 60%, 88%);font-weight:400;padding:1px 0;">304</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(303, 60%, 88%);font-weight:400;padding:1px 0;">323</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(322, 60%, 88%);font-weight:400;padding:1px 0;">342</td>
+<td style="border:0.5px solid #bbb;text-align:center;background:hsl(341, 60%, 88%);font-weight:700;padding:1px 0;">361</td>
+</tr>
+</table>
+</section>
+    </section>
+  </section>
+  <p style="text-align:center;font-size:13px;color:#888;margin:8px 0 20px 0;padding:0;">▲ 最终版：完美单页横向 A4，19 色彩虹列 + 下三角 + 平方数加粗</p>
+
+  <section style="background:#e8f5e9;border-left:4px solid #27ae60;padding:14px 18px;border-radius:8px;margin:0 0 14px 0;">
+    <p style="margin:0;padding:0;"><strong>🖨️ 打印小贴士：</strong>打印时记得关闭浏览器的<strong>「页眉页脚」</strong>（Chrome/Edge 在"更多设置"里），否则 URL、日期会吃掉 10-15mm 高度，又会导致溢出到第二页！另外勾选<strong>「背景图形」</strong>才能打印出彩色。</p>
+  </section>
+
+  <!-- ============ 总结 ============ -->
+  <p style="text-align:center;margin:40px 0;padding:0;color:#ccc;font-size:12px;letter-spacing:4px;">· · · · · 总 · 结 · · · · ·</p>
+
+  <h2 style="margin:44px 0 18px 0;padding:0 0 0 14px;font-size:23px;color:#2c3e50;border-left:5px solid #3498db;">💡 四轮迭代，我学到了什么</h2>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">回顾整个过程，其实就是一次典型的<strong>人机协作</strong>：</p>
+
+  <table style="width:100%;border-collapse:collapse;font-size:14px;margin:8px 0;">
+    <tr style="background:#f1f5f9;">
+      <th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;color:#1a5276;">步骤</th>
+      <th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;color:#1a5276;">我的角色</th>
+      <th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;color:#1a5276;">AI 的角色</th>
+    </tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">第 1 步</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">提需求</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">生成雏形</td></tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">第 2 步</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">发现不足，提优化</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">彩色 + 下三角</td></tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">第 3 步</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">改变方向</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">改横向</td></tr>
+    <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">第 4 步</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">反馈问题</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">精算尺寸，修复</td></tr>
+  </table>
+
+  <h3 style="margin:26px 0 12px 0;padding:0;font-size:18px;color:#34495e;">三个关键经验</h3>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;"><strong>1️⃣ 先要一个能用的，再慢慢改</strong><br>我没有一开始就提所有需求（彩色+下三角+横版+单页），而是先要一个基础版，看到成果后再针对不足逐项优化。这样 AI 不会理解错，我也能一步步确认方向。</p>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;"><strong>2️⃣ 具体描述问题，而不是抱怨</strong><br>第四步我没有说"打印有问题你看看"，而是说"打印是两页，我想要一张 A4"。越具体，AI 越能精准定位。</p>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;"><strong>3️⃣ 迭代胜过完美</strong><br>四轮对话，每轮都在前一轮基础上改进。这种"小步快跑"的方式，比试图一步到位更高效。</p>
+
+  <p style="margin:0 0 16px 0;padding:0;font-size:17px;text-align:justify;">最终的乘法表：19×19、下三角、19 色彩虹、平方数加粗、完美单页横向 A4。从一句话需求，到一个精致成品——这就是 AI 协作的力量。🎉</p>
+
+  <!-- 页脚 -->
+  <section style="text-align:center;background:#2c3e50;color:#fff;padding:30px 20px;border-radius:8px;margin:36px 0 0 0;">
+    <h3 style="margin:0 0 10px 0;padding:0;font-size:18px;color:#fff;">👇 喜欢就收藏转发吧</h3>
+    <p style="margin:0;padding:0;font-size:15px;">如果你也想试试 AI 帮你做东西，<br>记得：<strong>先要能用的，再慢慢优化</strong> ✨</p>
+  </section>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 小技能 · 作品集</title>
+<style>
+  /* ========== 全局 ========== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "微软雅黑", -apple-system, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== 顶部 Hero ========== */
+  .hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 14px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .hero-emoji { font-size: 32px; line-height: 1; }
+  .hero h1 {
+    font-size: 22px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .hero-center {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .stat-label {
+    font-size: 11px;
+    opacity: 0.8;
+    letter-spacing: 1px;
+  }
+
+  /* ========== 主内容区 ========== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 24px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-desc {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  /* ========== 作品卡片网格 ========== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    border: 1px solid #f0f0f0;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .card-cover {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-cover-mult {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+  }
+  .card-cover-circle {
+    background: linear-gradient(135deg, #1a5276, #2e86c1);
+  }
+  /* 卡片封面里的迷你圆形预览 */
+  .mini-circle-preview {
+    opacity: 0.95;
+  }
+  /* 卡片封面里的迷你乘法表预览 */
+  .mini-preview {
+    border-collapse: collapse;
+    opacity: 0.92;
+  }
+  .mini-preview th, .mini-preview td {
+    width: 16px; height: 16px;
+    text-align: center;
+    font-size: 7px;
+    color: #333;
+    border: 0.5px solid rgba(0,0,0,0.15);
+    line-height: 16px;
+  }
+  .mini-preview th {
+    background: rgba(255,255,255,0.9);
+    color: #2c3e50;
+    font-weight: 600;
+  }
+  .mini-preview td {
+    background: #fff;
+  }
+
+  .card-body { padding: 22px 22px 24px; }
+  .card-tags { margin-bottom: 10px; }
+  .tag {
+    display: inline-block;
+    background: #eef2f7;
+    color: #667eea;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-right: 6px;
+    letter-spacing: 0.5px;
+  }
+  .card-title {
+    font-size: 19px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #aaa;
+    padding-top: 14px;
+    border-top: 1px solid #f5f5f5;
+  }
+  .card-meta-item { display: flex; align-items: center; gap: 4px; }
+
+  /* ========== 即将推出占位卡 ========== */
+  .card-coming {
+    background: #fff;
+    border-radius: 14px;
+    border: 2px dashed #d0d0d0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    text-align: center;
+    color: #bbb;
+    min-height: 320px;
+  }
+  .card-coming-icon { font-size: 36px; margin-bottom: 12px; opacity: 0.6; }
+  .card-coming-text { font-size: 15px; }
+
+  /* ========== 模态框(详情) ========== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 30px 16px;
+  }
+  .modal-overlay.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .modal {
+    background: #fff;
+    border-radius: 14px;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .modal-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.35); }
+
+  /* 成品链接区域 */
+  .product-link-section {
+    text-align: center;
+    padding: 32px 24px;
+    background: #f8f9fa;
+    border-top: 1px solid #eee;
+  }
+  .product-link-section-label {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+  .product-link-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 44px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+  }
+  .product-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102,126,234,0.4);
+  }
+
+  .iframe-process-wrap {
+    width: 100%;
+    background: #f5f5f5;
+  }
+  .iframe-process-wrap iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    display: block;
+  }
+
+  /* 加载提示 */
+  .loading-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #999;
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  /* ========== 页脚 ========== */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: #aaa;
+    font-size: 13px;
+    background: #fff;
+    margin-top: 50px;
+  }
+  .footer-divider {
+    color: #ddd;
+    margin: 0 8px;
+  }
+
+  /* ========== 移动端 ========== */
+  @media (max-width: 600px) {
+    .hero { padding: 10px 14px; }
+    .hero-content { flex-wrap: wrap; gap: 6px; }
+    .hero-emoji { font-size: 26px; }
+    .hero h1 { font-size: 17px; }
+    .hero-center { font-size: 11px; order: 3; width: 100%; text-align: center; }
+    .hero-stats { gap: 14px; }
+    .stat-num { font-size: 16px; }
+    .stat-label { font-size: 10px; }
+    .container { padding: 30px 16px; }
+    .grid { grid-template-columns: 1fr; }
+    .modal-header h2 { font-size: 16px; }
+    .product-link-btn { font-size: 14px; padding: 12px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ Hero ============ -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <span class="hero-emoji">🤖</span>
+      <h1>AI 小技能</h1>
+    </div>
+    <div class="hero-center">记录每一次与 AI 协作的过程 · 分享每一个实用的成品</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" id="stat-works">1</div>
+        <div class="stat-label">作品数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="stat-iterations">4</div>
+        <div class="stat-label">迭代轮次</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">可能性</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 主内容 ============ -->
+<main class="container">
+  <h2 class="section-title">📂 作品列表</h2>
+  <p class="section-desc">点击任意作品卡片,查看完整制作过程,末尾附成品链接</p>
+
+  <div class="grid" id="worksGrid">
+    <!-- 卡片由 JS 生成 -->
+  </div>
+</main>
+
+<!-- ============ 模态框 ============ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">作品标题</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="iframe-process-wrap">
+      <iframe id="iframe-process" src="" onload="onIframeLoad('process')"></iframe>
+    </div>
+    <div class="product-link-section" id="product-link-section">
+      <div class="product-link-section-label">— 制作过程完毕,点击查看成品 —</div>
+      <a id="product-link" href="#" target="_blank" class="product-link-btn">
+        🎯 查看作品成品 →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 页脚 ============ -->
+<footer class="footer">
+  <p>Made with ❤️ & AI · 持续更新中
+    <span class="footer-divider">|</span>
+    © 2026 AI 小技能作品集</p>
+</footer>
+
+<script>
+  // ============ 作品数据(可扩展) ============
+  // 新增作品只需在这个数组里加一条记录
+  const works = [
+    {
+      id: 'multiplication',
+      title: '19×19 乘法口诀表',
+      desc: '从一句话需求出发,经历四轮迭代,最终做成完美适配 A4 横向打印的下三角彩色乘法表。支持单页打印、19 色彩虹列、平方数加粗。',
+      tags: ['HTML', '打印优化', 'CSS'],
+      date: '2026-07-13',
+      iterations: 4,
+      productUrl: '乘法口诀表.html',
+      processUrl: '乘法口诀表制作过程.html',
+      coverClass: 'card-cover-mult',
+      // 封面迷你预览:生成一个 8x8 的乘法表缩略
+      coverRender: 'mult'
+    },
+    {
+      id: 'draw-circle',
+      title: 'AI 控制 FreeCAD 画圆',
+      desc: '从零开始探索 FreeCAD 开源 CAD 软件,用 AI 编写 Python 脚本自动控制 FreeCAD 画出一个圆,并导出 FCStd、DXF、SVG 三种格式。三轮对话完成全流程。',
+      tags: ['FreeCAD', 'Python', 'CAD自动化'],
+      date: '2026-07-06',
+      iterations: 3,
+      productUrl: '画圆成品.html',
+      processUrl: '画圆制作过程.html',
+      coverClass: 'card-cover-circle',
+      coverRender: 'circle'
+    }
+    // 👇 以后新增作品加在这里,例如:
+    // ,{
+    //   id: 'calendar',
+    //   title: '动态日历',
+    //   desc: '...',
+    //   tags: ['HTML', 'JS'],
+    //   date: '2026-07-20',
+    //   iterations: 2,
+    //   productUrl: '日历.html',
+    //   processUrl: '日历制作过程.html',
+    //   coverClass: 'card-cover-calendar',
+    //   coverRender: 'calendar'
+    // }
+  ];
+
+  // ============ 渲染封面预览 ============
+  function renderCover(type) {
+    if (type === 'mult') {
+      // 生成一个 9x9 的迷你乘法表(取前 9 行 9 列做预览)
+      const N = 9;
+      let html = '<table class="mini-preview"><thead><tr>';
+      html += '<th style="background:#1a252f;color:#fff">×</th>';
+      for (let j = 1; j <= N; j++) html += `<th>${j}</th>`;
+      html += '</tr></thead><tbody>';
+      for (let i = 1; i <= N; i++) {
+        html += '<tr>';
+        html += `<th>${i}</th>`;
+        for (let j = 1; j <= N; j++) {
+          if (j > i) {
+            html += '<td style="background:#f0f3f7"></td>';
+          } else {
+            const hue = Math.round((j-1) * (360/19));
+            const bg = `hsl(${hue},60%,85%)`;
+            html += `<td style="background:${bg}">${i*j}</td>`;
+          }
+        }
+        html += '</tr>';
+      }
+      html += '</tbody></table>';
+      return html;
+    }
+    if (type === 'circle') {
+      return `
+        <svg class="mini-circle-preview" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="cg" width="15" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="120" height="120" fill="url(#cg)"/>
+          <line x1="0" y1="60" x2="120" y2="60" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="60" y1="0" x2="60" y2="120" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+          <circle cx="60" cy="60" r="44" fill="none" stroke="#60a5fa" stroke-width="2.5"/>
+          <circle cx="60" cy="60" r="3" fill="#60a5fa"/>
+          <line x1="60" y1="60" x2="104" y2="60" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="70" y="54" font-size="11" fill="rgba(255,255,255,0.8)" font-family="monospace">r=50</text>
+        </svg>
+      `;
+    }
+    return '';
+  }
+
+  // ============ 渲染卡片列表 ============
+  function renderCards() {
+    const grid = document.getElementById('worksGrid');
+    let html = '';
+    works.forEach((w, i) => {
+      html += `
+        <div class="card" onclick="openModal(${i})">
+          <div class="card-cover ${w.coverClass}">
+            ${renderCover(w.coverRender)}
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              ${w.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            <h3 class="card-title">${w.title}</h3>
+            <p class="card-desc">${w.desc}</p>
+            <div class="card-meta">
+              <span class="card-meta-item">📅 ${w.date}</span>
+              <span class="card-meta-item">🔄 ${w.iterations} 轮迭代</span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    // 占位卡:敬请期待
+    html += `
+      <div class="card-coming">
+        <div class="card-coming-icon">✨</div>
+        <div class="card-coming-text">更多作品<br>敬请期待</div>
+      </div>
+    `;
+
+    grid.innerHTML = html;
+
+    // 更新统计数字
+    document.getElementById('stat-works').textContent = works.length;
+    document.getElementById('stat-iterations').textContent =
+      works.reduce((s, w) => s + w.iterations, 0);
+  }
+
+  // ============ 模态框控制 ============
+  let currentWork = null;
+
+  function openModal(index) {
+    currentWork = works[index];
+    document.getElementById('modal-title').textContent = currentWork.title;
+    // 直接加载制作过程
+    document.getElementById('iframe-process').src = currentWork.processUrl;
+    // 有成品则显示链接,无成品则隐藏
+    const linkSection = document.getElementById('product-link-section');
+    if (currentWork.productUrl) {
+      document.getElementById('product-link').href = currentWork.productUrl;
+      linkSection.style.display = 'block';
+    } else {
+      linkSection.style.display = 'none';
+    }
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+    // 清空 iframe,停止加载
+    document.getElementById('iframe-process').src = '';
+  }
+
+  // 点击遮罩关闭
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ESC 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function onIframeLoad(which) {
+    // 可扩展:加载完成后的回调
+  }
+
+  // ============ 初始化 ============
+  renderCards();
+</script>
+
+</body>
+</html>

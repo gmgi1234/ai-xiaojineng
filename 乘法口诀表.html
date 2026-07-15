@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>乘法口诀表 1×1 - 19×19（横向 A4）</title>
+<style>
+  /* ===== A4 横向，零页边距（边距由 body padding 控制） ===== */
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", Arial, sans-serif;
+    color: #222;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6mm;
+  }
+
+  h1 {
+    font-size: 13px;
+    margin: 0 0 3mm;
+    letter-spacing: 2px;
+  }
+
+  /* ===== 表格：保守尺寸，保证单页 ===== */
+  /* A4 横向 297×210，body padding 6mm → 可用 285×198 */
+  /* 标题约 8mm，20 行表格用 184mm → 每行 9.2mm */
+  table {
+    border-collapse: collapse;
+    font-size: 12px;
+    table-layout: fixed;
+    width: 280mm;
+  }
+
+  th, td {
+    border: 0.5px solid #b0b0b0;
+    text-align: center;
+    height: 9.2mm;
+    line-height: 9.2mm;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  th {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .corner { background: #1a252f; color: #fff; }
+  .empty { background: #fff; border-color: #e8e8e8; }
+  .diagonal { font-weight: 700; }
+
+  /* ===== 打印优化 ===== */
+  @media print {
+    body { padding: 4mm 5mm; }
+    h1 { font-size: 12px; margin: 0 0 2mm; }
+    .no-print { display: none !important; }
+  }
+
+  /* ===== 屏幕工具栏 ===== */
+  .toolbar { margin-bottom: 10px; }
+  .toolbar button {
+    padding: 6px 16px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    background: #2c3e50;
+    color: #fff;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: #34495e; }
+</style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button onclick="window.print()">🖨️ 打印 / 保存为 PDF</button>
+  </div>
+
+  <h1>乘法口诀表（1×1 — 19×19）</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="corner">×</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+<script>
+  const N = 19;
+  const theadRow = document.querySelector('thead tr');
+  const tbody = document.getElementById('tbody');
+
+  // 每列一种柔和颜色（HSL 色环均分）
+  const colColor = (j) => `hsl(${Math.round((j - 1) * (360 / N))}, 60%, 88%)`;
+
+  // 列表头
+  for (let j = 1; j <= N; j++) {
+    const th = document.createElement('th');
+    th.textContent = j;
+    theadRow.appendChild(th);
+  }
+
+  // 表体：下三角（删除右上重复）
+  for (let i = 1; i <= N; i++) {
+    const tr = document.createElement('tr');
+
+    const th = document.createElement('th');
+    th.textContent = i;
+    tr.appendChild(th);
+
+    for (let j = 1; j <= N; j++) {
+      const td = document.createElement('td');
+      if (j > i) {
+        td.className = 'empty';
+      } else {
+        td.textContent = i * j;
+        td.style.backgroundColor = colColor(j);
+        if (i === j) td.classList.add('diagonal');
+      }
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+</script>
+
+</body>
+</html>
